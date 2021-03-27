@@ -1,0 +1,19 @@
+t = ERC20.deploy("ERC_TOK", "E20T", {'from': accounts[0].address})
+ 
+[print(a.balance()) for a in accounts]
+  
+t.approve(accounts[0].address, 11, {'from': accounts[1].address})
+
+msg.data (bytes): complete calldata
+msg.gas (uint): remaining gas - deprecated in version 0.4.21 and to be replaced by gasleft()
+msg.sender (address): sender of the message (current call)
+msg.sig (bytes4): first four bytes of the calldata (i.e. function identifier)
+msg.value (uint): number of wei sent with the message
+
+accounts[0].transfer(t.address, "0.01 ether")
+
+t.transfer(accounts[1].address, "0.0000000001 ether", {'from':accounts[0]})
+
+from datetime import datetime
+ts = chain.time()
+print(datetime.utcfromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S'))
