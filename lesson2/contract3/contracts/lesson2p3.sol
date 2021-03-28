@@ -171,6 +171,9 @@ contract DividendToken is StandardToken, Ownable {
 
     /// @dev for each token holder: last ether balance was when requested dividends
     mapping(address => uint256) public m_lastDividents;
+        
+    /// @dev for each token holder: last comment left on deposit
+    mapping(address => bytes[32]) public m_lastComment;
 
 
     uint256 public m_totalHangingDividends;
