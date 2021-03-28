@@ -39,20 +39,6 @@ contract ERC20 is Context, IERC20 {
     string private _name;
     string private _symbol;
 
-    /*
-    * Modifiers
-    */
-
-    /// @dev Checks if today is "working day" of contract
-    modifier transferDay() {
-        uint cur_time = block.timestamp;
-        uint unix_days = cur_time / (60*60*24);
-        /// start of UNIX time was on Thursday(4)
-        uint weekday = (unix_days + 4) % 7; 
-        require(weekday != 6, "Today is Sat"); 
-        _;
-    }
-
     /**
      * @dev Sets the values for {name} and {symbol}.
      *
