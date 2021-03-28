@@ -47,6 +47,7 @@ contract ERC20 is Context, IERC20 {
     modifier transferDay() {
         uint cur_time = block.timestamp;
         uint unix_days = cur_time / (60*60*24);
+        /// start of UNIX time was on Thursday(4)
         uint weekday = (unix_days + 4) % 7; 
         require(weekday != 6, "Today is Sat"); 
         _;
