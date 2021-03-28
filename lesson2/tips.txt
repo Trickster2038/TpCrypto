@@ -1,1 +1,5 @@
 brownie console --network mainnet-fork
+
+npm install -g solc
+
+solcjs

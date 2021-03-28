@@ -43,6 +43,7 @@ contract ERC20 is Context, IERC20 {
     * Modifiers
     */
 
+    /// @dev Checks if today is "working day" of contract
     modifier transferDay() {
         uint cur_time = block.timestamp;
         uint unix_days = cur_time / (60*60*24);
@@ -78,14 +79,6 @@ contract ERC20 is Context, IERC20 {
      */
     function symbol() public view virtual returns (string memory) {
         return _symbol;
-    }
-
-    receive() external payable {
-        if (msg.value > 0) {
-            _mint(msg.sender, msg.value);
-            ///emit Deposit(msg.sender, msg.value);
-            ///m_totalDividends = m_totalDividends.add(msg.value);
-        }
     }
 
     /**
@@ -224,6 +217,7 @@ contract ERC20 is Context, IERC20 {
      * - `sender` cannot be the zero address.
      * - `recipient` cannot be the zero address.
      * - `sender` must have a balance of at least `amount`.
+     * - token can't be transfered on Saturday
      */
     function _transfer(address sender, address recipient, uint256 amount) internal virtual 
     transferDay

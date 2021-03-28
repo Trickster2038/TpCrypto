@@ -17,3 +17,9 @@ t.transfer(accounts[1].address, "0.0000000001 ether", {'from':accounts[0]})
 from datetime import datetime
 ts = chain.time()
 print(datetime.utcfromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S'))
+
+receive() external payable {
+        if (msg.value > 0) {
+            _mint(msg.sender, msg.value);
+        }
+    }
