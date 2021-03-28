@@ -37,20 +37,10 @@ contract DividendToken is StandardToken, Ownable {
         }));
     }
 
-    // function() external payable {
-    //     if (msg.value > 0) {
-    //         emit Deposit(msg.sender, msg.value);
-    //         m_totalDividends = m_totalDividends.add(msg.value);
-    //     }
-    // }
-
-
-    /// @dev Gives opportunity to make deposit with comments
-    function sendDeposit(uint256 amount, bytes[32] comment) public{
+    function() external payable {
         if (msg.value > 0) {
-            emit Deposit(msg.sender, amount);
-            m_lastComment[msg.sender] = comment;
-            m_totalDividends = m_totalDividends.add(amount);
+            emit Deposit(msg.sender, msg.value);
+            m_totalDividends = m_totalDividends.add(msg.value);
         }
     }
 
@@ -180,9 +170,7 @@ contract DividendToken is StandardToken, Ownable {
     mapping(address => uint256) public m_lastAccountEmission;
 
     /// @dev for each token holder: last ether balance was when requested dividends
-    
-    /// @dev for each token holder: last comment left on deposit
-    mapping(address => bytes[32]) public m_lastComment;
+    mapping(address => uint256) public m_lastDividents;
 
 
     uint256 public m_totalHangingDividends;
