@@ -91,12 +91,6 @@ contract MultiSigWallet {
         _;
     }
 
-    /// @dev Prevents too large transfer value
-    modifier safeAmount(uint amount) {
-        require(amount <= 66 ether);
-        _;
-    }
-
     /// @dev Fallback function allows to deposit ether.
     function()
         payable
@@ -288,7 +282,6 @@ contract MultiSigWallet {
      * Internal functions
      */
     /// @dev Adds a new transaction to the transaction mapping, if transaction does not exist yet.
-    /// @dev modifier safeAmount(...) prevent too large transfer (>66 ETH)
     /// @param destination Transaction target address.
     /// @param value Transaction ether value.
     /// @param data Transaction data payload.
@@ -296,7 +289,6 @@ contract MultiSigWallet {
     function addTransaction(address destination, uint value, bytes data)
         internal
         notNull(destination)
-        safeAmount(value)
         returns (uint transactionId)
     {
         transactionId = transactionCount;

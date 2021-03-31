@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.0;
 
-import "./Context.sol";
+import "../../utils/Context.sol";
 import "./IERC20.sol";
 
 /**
@@ -38,20 +38,6 @@ contract ERC20 is Context, IERC20 {
 
     string private _name;
     string private _symbol;
-
-    /*
-    * Modifiers
-    */
-
-    /// @dev Checks if today is "working day" of contract
-    modifier transferDay() {
-        uint cur_time = block.timestamp;
-        uint unix_days = cur_time / (60*60*24);
-        /// start of UNIX time was on Thursday(4)
-        uint weekday = (unix_days + 4) % 7; 
-        require(weekday != 6, "Today is Sat"); 
-        _;
-    }
 
     /**
      * @dev Sets the values for {name} and {symbol}.
@@ -218,11 +204,8 @@ contract ERC20 is Context, IERC20 {
      * - `sender` cannot be the zero address.
      * - `recipient` cannot be the zero address.
      * - `sender` must have a balance of at least `amount`.
-     * - token can't be transfered on Saturday
      */
-    function _transfer(address sender, address recipient, uint256 amount) internal virtual 
-    transferDay
-    {
+    function _transfer(address sender, address recipient, uint256 amount) internal virtual {
         require(sender != address(0), "ERC20: transfer from the zero address");
         require(recipient != address(0), "ERC20: transfer to the zero address");
 
