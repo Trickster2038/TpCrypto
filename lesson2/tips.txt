@@ -3,6 +3,3 @@ brownie console --network mainnet-fork
 npm install -g solc
 
 solcjs
-
-git merge -X theirs branchA
-git merge -X ours bracnhA
