@@ -36,7 +36,7 @@ contract DividendToken is StandardToken, Ownable {
             totalBalanceWas: 0
         }));
     }
-
+    
     function() external payable {
         if (msg.value > 0) {
             emit Deposit(msg.sender, msg.value);
