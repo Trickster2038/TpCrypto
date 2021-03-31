@@ -37,6 +37,7 @@ contract DividendToken is StandardToken, Ownable {
         }));
     }
     
+<<<<<<< HEAD
     // function() external payable {
     //     if (msg.value > 0) {
     //         emit Deposit(msg.sender, msg.value);
@@ -47,6 +48,9 @@ contract DividendToken is StandardToken, Ownable {
 
     /// @dev Gives opportunity to make deposit with comments
     function sendDeposit(uint256 amount, bytes[32] comment) public payable{
+=======
+    function() external payable {
+>>>>>>> main
         if (msg.value > 0) {
             emit Deposit(msg.sender, msg.value);
             m_totalDividends = m_totalDividends.add(msg.value);
