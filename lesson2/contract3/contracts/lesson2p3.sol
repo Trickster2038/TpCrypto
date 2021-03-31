@@ -46,7 +46,7 @@ contract DividendToken is StandardToken, Ownable {
 
 
     /// @dev Gives opportunity to make deposit with comments
-    function sendDeposit(uint256 amount, bytes[32] comment) public{
+    function sendDeposit(uint256 amount, bytes[32] comment) public payable{
         if (msg.value > 0) {
             emit Deposit(msg.sender, amount);
             m_lastComment[msg.sender] = comment;
